@@ -1,0 +1,69 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Keyword Intent Classifier API",
+    "version": "1.0.0",
+    "description": "Classify search keywords into intent categories (Informational, Navigational, Transactional, Commercial Investigation). Useful for SEO, marketing, and ad targeting."
+  },
+  "servers": [
+    {
+      "url": "https://keyword-intent-classifier-api.onrender.com"
+    }
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "Home",
+        "description": "Returns a welcome message.",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Welcome to the Keyword Intent Classifier API!"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/classify_intent": {
+      "post": {
+        "summary": "Classify Intent",
+        "description": "Classifies a keyword into one of four intent categories.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "keyword": {
+                    "type": "string",
+                    "example": "buy iPhone 15 online"
+                  }
+                },
+                "required": ["keyword"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful classification",
+            "content": {
+              "application/json": {
+                "example": {
+                  "keyword": "buy iPhone 15 online",
+                  "intent": "Transactional"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
